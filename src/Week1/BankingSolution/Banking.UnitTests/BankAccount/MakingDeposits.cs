@@ -19,4 +19,15 @@ public class MakingDeposits
         Assert.Equal(openingBalance + amountToDeposit, account.GetBalance());
 
     }
+
+    [Fact]
+    public void CannotDepositInvalidValues()
+    {
+        var account = new Account();
+
+        Assert.Throws<ArgumentOutOfRangeException>(() =>
+        {
+            account.Deposit(-1);
+        });
+    }
 }
