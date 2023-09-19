@@ -28,6 +28,7 @@ public class DeclaringLocalVariables
         decimal salary = 80123.23M;
 
         Dog rover = new Dog();
+
     }
 
     [Fact]
