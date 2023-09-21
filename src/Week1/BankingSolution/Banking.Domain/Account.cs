@@ -3,10 +3,10 @@
 public class Account
 {
     private decimal _balance = 5000M;
-
-    public void Deposit(decimal amountToDeposit)
+    public virtual void Deposit(TransactionValueTypes.Deposit amountToDeposit)
     {
-        _balance = _balance + amountToDeposit;
+        _balance += amountToDeposit.Value;
+
     }
 
     public decimal GetBalance()
@@ -14,25 +14,19 @@ public class Account
 
         return _balance;
     }
-
-    public void Withdraw(decimal amountToWithdraw)
+    // "Primitive Obsession" -
+    public void Withdraw(TransactionValueTypes.Withdrawal amountToWithdraw)
     {
-        GuardhasSufficientFunds(amountToWithdraw);
+        GuardHasSufficientFunds(amountToWithdraw.Value);
 
-        _balance -= amountToWithdraw;
+        _balance -= amountToWithdraw.Value; // The important business!
     }
 
-    private void GuardhasSufficientFunds(decimal amountToWithdraw)
+    private void GuardHasSufficientFunds(decimal amountToWithdraw)
     {
         if (amountToWithdraw > _balance)
         {
             throw new OverdraftException();
         }
-
-    }
-
-    private bool HasSufficientFunds(decimal amountToWithdraw)
-    {
-        return amountToWithdraw <= _balance;
     }
 }

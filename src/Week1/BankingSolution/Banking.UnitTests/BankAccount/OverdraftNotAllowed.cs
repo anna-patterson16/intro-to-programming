@@ -6,14 +6,15 @@ public class OverdraftNotAllowed
     [Fact]
     public void BalanceDoesNotDecreaseOnOverdraft()
     {
-        // Given
         // If you overdraft, what should be the "observable" thing that happens?
-        // - it shouldn't decrease your balance
-        //  - if I have 5000, and I take out 6000, then I should still have 5000
+        // - it shouldn't decrease your balance.
+        //    - if I have 5000, and I take out 6000, then I should still have 5000
+        // Given
         var account = new Account();
         var openingBalance = account.GetBalance();
 
-        var amountToWithdraw = openingBalance + .01M;
+        var amountToWithdraw = TransactionValueTypes.Withdrawal.CreateFrom(openingBalance + .01M);
+
 
         // When
         try
@@ -23,34 +24,25 @@ public class OverdraftNotAllowed
         catch (OverdraftException)
         {
 
-            //ignore
+            // Ignore
         }
         finally
         {
             Assert.Equal(openingBalance, account.GetBalance());
         }
-
-        // Then
-        Assert.Equal(openingBalance, account.GetBalance());
     }
-
     [Fact]
     public void OverdraftThrowsAnException()
     {
-
+        // Given
         var account = new Account();
         var openingBalance = account.GetBalance();
 
-        var amountToWithdraw = openingBalance + .01M;
-
-        // When
+        var amountToWithdraw = TransactionValueTypes.Withdrawal.CreateFrom(openingBalance + .01M);
+        // When & then
         Assert.Throws<OverdraftException>(() =>
         {
             account.Withdraw(amountToWithdraw);
         });
-
-        // Then - did the exception get thrown
-
     }
-
 }
