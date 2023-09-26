@@ -4,7 +4,7 @@ public class DeclaringLocalVariables
     [Fact]
     public void ExplicitlyTypedLocalVariable()
     {
-        // type idetnifier [= value]
+        // Type identifier [= value]
         int a = 0;
         int b = 2;
 
@@ -17,18 +17,17 @@ public class DeclaringLocalVariables
     }
 
     [Fact]
-    public void ImplicitlytypedLocalVariablesWithVar()
+    public void ImplicitlyTypedLocalVariablesWithVar()
     {
-        // if you ar egoing to intiialize the var, C# already knows the type
-        var a = 0;  // if there is a literal number with no decimal point, it is an int
-        var b = 1.0; // a number with a decimal point is inferred to be a double precision floating point number
-        var c = "Cat";  // this is a string
-        var d = 'A';  // this is a char
-        var e = true;  // a boolean
+        // If you are going to initialize the variable, C# already knows the type. You can have it infer the type.
+        var a = 0; // if there is a literal number with no decimal point, it is an int.
+        var b = 1.0; // A number with a decimal point is inferred to be a double precision floating point number.
+        var c = "Cat"; // This is a string.
+        var d = 'A'; // this is a char
+        var e = true;
         decimal salary = 80123.23M;
 
-        Dog rover = new Dog();
-
+        var rover = new Dog();
     }
 
     [Fact]
@@ -36,10 +35,8 @@ public class DeclaringLocalVariables
     {
         // .NET 5
         Dog rover = new();
-
-
     }
-
 }
+
 
 public class Dog { }

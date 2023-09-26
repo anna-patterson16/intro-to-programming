@@ -1,9 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [],
+  content: ["./src/**/*.{html,ts}"],
   theme: {
     extend: {},
   },
-  plugins: [],
-}
-
+  plugins: [
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/typography"),
+    require("daisyui"),
+  ],
+  daisyui: { themes: ["cyberpunk", "dark", "dracula"] },
+};
