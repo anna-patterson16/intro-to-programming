@@ -1,38 +1,32 @@
-﻿namespace ConsoleApp1;
+﻿var builder = WebApplication.CreateBuilder(args);
 
-internal class Program
+
+var app = builder.Build();
+
+app.MapGet("/message", () =>
 {
-    static void Main(string[] args)
+    var response = new MessageResponseModel("This is an API! Wow!", DateTime.Now);
+    return Results.Ok(response);
+});
+
+app.MapGet("/states", () =>
+{
+    var states = new Dictionary<string, string>
     {
+        { "OH", "Ohio" },
+        { "KY", "Kentucy" },
+        { "CO", "Colorado" },
+        { "PR", "Puerto Rico" }
+    };
+    return Results.Ok(states);
+});
 
-        var builder = WebApplication.CreateBuilder(args);
+app.MapGet("/policies/{policyNumber}", (string policyNumber) =>
+{
+    return Results.Ok(new { policyNumber });
+});
 
-        //Console.WriteLine("Hello, World!");
+app.Run();
 
-        //Console.WriteLine("Here is another line!");
-
-        //Console.Write("This will not have a new line at the end");
-
-
-        string message = "Welcome to Class";
-
-        DateTime now = DateTime.Now;
-
-        string finalMessage = $"The message {message} and it is now {now:T}";
-
-        var app = builder.Build();
-
-        app.MapGet("/message", () =>
-        {
-            var response = new MessageResponseModel("This is an API: Wow!", DateTime.Now);
-            return Results.Ok(finalMessage);
-        });
-
-        app.Run();
-
-
-    }
-
-}
 
 public record MessageResponseModel(string Message, DateTime When);
