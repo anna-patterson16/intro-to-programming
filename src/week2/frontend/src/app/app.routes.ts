@@ -1,10 +1,12 @@
 import { Routes } from "@angular/router";
 import { HomeComponent } from "./pages/home/home.component";
 import { SupportComponent } from "./pages/support/support.component";
+import { TodosComponent } from "./pages/todos/todos.component";
+import { AdminComponent } from "./pages/admin/admin.component";
 
 export const routes: Routes = [
   {
-    path: "home",
+    path: "dashboard",
     component: HomeComponent,
   },
   {
@@ -12,7 +14,16 @@ export const routes: Routes = [
     component: SupportComponent,
   },
   {
+    path: "todos",
+    component: TodosComponent,
+  },
+  {
+    path: "admin",
+    component: AdminComponent,
+  },
+
+  {
     path: "**",
-    redirectTo: "home",
+    redirectTo: "dashboard",
   },
 ];
