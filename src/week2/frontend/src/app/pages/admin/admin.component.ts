@@ -7,8 +7,9 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   template: `
     <p>
-      admin works!
+     The Super Secret Admin Page!!
     </p>
+    <p>Adding super duper stuff.</p>
   `,
   styles: [
   ]
